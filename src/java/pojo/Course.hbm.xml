@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 9, 2023 12:15:13 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Course" table="course" catalog="academicsystem" optimistic-lock="version">
+        <id name="idClass" type="java.lang.Integer">
+            <column name="id_class" />
+            <generator class="identity" />
+        </id>
+        <property name="className" type="string">
+            <column name="class_name" />
+        </property>
+        <set name="students" table="student" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_class" />
+            </key>
+            <one-to-many class="pojo.Student" />
+        </set>
+        <set name="schedules" table="schedule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_class" />
+            </key>
+            <one-to-many class="pojo.Schedule" />
+        </set>
+    </class>
+</hibernate-mapping>

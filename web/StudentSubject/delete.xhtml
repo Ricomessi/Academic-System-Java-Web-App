@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Delete Studentsubject</title>
+        <!-- Tambahkan referensi ke Bootstrap CSS dan JavaScript -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/styles.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cyber University</a>
+            </div>
+        </nav>
+        <header class="py-5 bg-image-full" style="background-image: linear-gradient(to top, #2e4374, #60444461),url(img/Cover.jpg)">
+            <div class="text-center my-5">
+                <h1 class="text-white fs-3 fw-bolder">Chase your dream with us</h1>
+                <p class="text-white-50 mb-0">Beyond your limit</p>
+            </div>
+        </header>
+        <br></br>
+        <div class="container">
+            <h:form id="deleteStudentsubject">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="studentsubjectId">Studentsubject ID to Delete:</label>
+                            <h:inputText id="studentsubjectId" class="form-control" value="#{studentsubject.id}" />
+                             
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+                <div class="d-flex flex-column gap-3 row">
+                    <div class="col-md-6">
+                           <h:message for="studentsubjectId" style="color: red;" />
+                        <h:commandButton class="btn btn-danger" value="Delete Studentsubject" action="#{studentsubject.delete}" />
+                    </div>
+                </div>
+                <h:commandButton value="Kembali" action="#{admin.navigateToAllLogin}" class="btn btn-secondary mt-2" />
+               
+            </h:form>
+        </div> <!-- Tutup div .container di sini -->
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright Cyber university 2023</p></div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </h:body>
+</html>

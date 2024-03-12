@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DAOLecturer.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AAA111&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">DAOLecturer.java</span></div><h1>DAOLecturer.java</h1><pre class="source lang-java linenums">package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import pojo.NewHibernateUtil;
+import pojo.Lecturer;
+
+<span class="fc" id="L11">public class DAOLecturer {</span>
+
+    public void addLecturer(Lecturer lecturer) {
+<span class="fc" id="L14">        Transaction trans = null;</span>
+<span class="fc" id="L15">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L17">            trans = session.beginTransaction();</span>
+<span class="fc" id="L18">            session.save(lecturer);</span>
+<span class="fc" id="L19">            trans.commit();</span>
+<span class="nc" id="L20">        } catch (Exception e) {</span>
+<span class="nc" id="L21">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L23">            session.close();</span>
+<span class="pc" id="L24">        }</span>
+<span class="fc" id="L25">    }</span>
+
+    public void deleteLecturer(Integer idLecturer) {
+<span class="fc" id="L28">        Transaction trans = null;</span>
+<span class="fc" id="L29">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L31">            trans = session.beginTransaction();</span>
+<span class="fc" id="L32">            Lecturer lecturer = (Lecturer) session.load(Lecturer.class, idLecturer);</span>
+<span class="nc" id="L33">            session.delete(lecturer);</span>
+<span class="nc" id="L34">            trans.commit();</span>
+<span class="fc" id="L35">        } catch (Exception e) {</span>
+<span class="fc" id="L36">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L38">            session.close();</span>
+<span class="pc" id="L39">        }</span>
+<span class="fc" id="L40">    }</span>
+
+    public Lecturer getLecturerById(Integer idLecturer) {
+<span class="fc" id="L43">        Transaction trans = null;</span>
+<span class="fc" id="L44">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L45">        Lecturer lecturer = null;</span>
+        try {
+<span class="fc" id="L47">            trans = session.beginTransaction();</span>
+<span class="fc" id="L48">            lecturer = (Lecturer) session.get(Lecturer.class, idLecturer);</span>
+<span class="fc" id="L49">            trans.commit();</span>
+<span class="nc" id="L50">        } catch (Exception e) {</span>
+<span class="nc" id="L51">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L53">            session.close();</span>
+<span class="pc" id="L54">        }</span>
+<span class="fc" id="L55">        return lecturer;</span>
+    }
+
+    public List&lt;Lecturer&gt; retrieveLecturers() {
+<span class="fc" id="L59">        List&lt;Lecturer&gt; lecturers = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L60">        Transaction trans = null;</span>
+<span class="fc" id="L61">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L63">            trans = session.beginTransaction();</span>
+<span class="fc" id="L64">            Query query = session.createQuery(&quot;from Lecturer&quot;);</span>
+<span class="fc" id="L65">            lecturers = query.list();</span>
+<span class="fc" id="L66">            trans.commit();</span>
+<span class="nc" id="L67">        } catch (Exception e) {</span>
+<span class="nc" id="L68">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L70">            session.close();</span>
+<span class="pc" id="L71">        }</span>
+<span class="fc" id="L72">        return lecturers;</span>
+    }
+
+    public void updateLecturer(Lecturer lecturer) {
+<span class="fc" id="L76">        Transaction trans = null;</span>
+<span class="fc" id="L77">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L79">            trans = session.beginTransaction();</span>
+<span class="fc" id="L80">            session.update(lecturer);</span>
+<span class="fc" id="L81">            trans.commit();</span>
+<span class="nc" id="L82">        } catch (Exception e) {</span>
+<span class="nc" id="L83">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L85">            session.close();</span>
+<span class="pc" id="L86">        }</span>
+<span class="fc" id="L87">    }</span>
+
+    public Lecturer getLecturerByEmail(String email) {
+<span class="fc" id="L90">    Transaction trans = null;</span>
+<span class="fc" id="L91">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L92">    Lecturer lecturer = null;</span>
+
+    try {
+<span class="fc" id="L95">        trans = session.beginTransaction();</span>
+<span class="fc" id="L96">        Query query = session.createQuery(&quot;from Lecturer where email = :email&quot;);</span>
+<span class="fc" id="L97">        query.setString(&quot;email&quot;, email);</span>
+<span class="fc" id="L98">        lecturer = (Lecturer) query.uniqueResult();</span>
+<span class="fc" id="L99">        trans.commit();</span>
+<span class="nc" id="L100">    } catch (Exception e) {</span>
+<span class="nc" id="L101">        e.printStackTrace();</span>
+    } finally {
+<span class="pc" id="L103">        session.close();</span>
+<span class="pc" id="L104">    }</span>
+
+<span class="fc" id="L106">    return lecturer;</span>
+}
+
+    
+       public List&lt;Lecturer&gt; login(String email, String password) {
+<span class="fc" id="L111">    List&lt;Lecturer&gt; lecturer = new ArrayList();</span>
+   
+<span class="fc" id="L113">    Transaction trans = null;</span>
+<span class="fc" id="L114">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+    try {
+<span class="fc" id="L116">        trans = session.beginTransaction();</span>
+<span class="fc" id="L117">        Query query = session.createQuery(&quot;from Lecturer where email= :email and password= :password&quot;);</span>
+<span class="fc" id="L118">        query.setString(&quot;email&quot;, email);</span>
+<span class="fc" id="L119">        query.setString(&quot;password&quot;, password);</span>
+<span class="fc" id="L120">        lecturer = query.list();</span>
+        
+<span class="fc" id="L122">        trans.commit();</span>
+<span class="nc" id="L123">    } catch (Exception e) {</span>
+        // Handle exceptions
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (trans != null) {</span>
+<span class="nc" id="L126">            trans.rollback();</span>
+        }
+    } finally {
+<span class="pc" id="L129">        session.close();</span>
+<span class="pc" id="L130">    }</span>
+<span class="fc" id="L131">    return lecturer;</span>
+}
+
+        
+    public Lecturer getUserByEmail(String email) {
+<span class="fc" id="L136">    Transaction trans = null;</span>
+<span class="fc" id="L137">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L138">    Lecturer lecturer = null;</span>
+
+    try {
+<span class="fc" id="L141">        trans = session.beginTransaction();</span>
+<span class="fc" id="L142">        Query query = session.createQuery(&quot;from Lecturer where email = :email&quot;);</span>
+<span class="fc" id="L143">        query.setString(&quot;email&quot;, email);</span>
+<span class="fc" id="L144">        lecturer = (Lecturer) query.uniqueResult();</span>
+<span class="fc" id="L145">        trans.commit();</span>
+<span class="nc" id="L146">    } catch (Exception e) {</span>
+<span class="nc" id="L147">        e.printStackTrace();</span>
+    } finally {
+<span class="pc" id="L149">        session.close();</span>
+<span class="pc" id="L150">    }</span>
+
+<span class="fc" id="L152">    return lecturer;</span>
+}
+    
+    public int getIdSubjectForLecturer(int lecturerId) {
+<span class="fc" id="L156">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+
+    try {
+        // Query to retrieve lecturer subjects associated with a specific lecturer by lecturerId
+<span class="fc" id="L160">        Query query = session.createQuery(&quot;SELECT ls.subject.idSubject FROM Lecturersubject ls WHERE ls.lecturer.idLecturer = :lecturerId&quot;);</span>
+<span class="fc" id="L161">        query.setParameter(&quot;lecturerId&quot;, lecturerId);</span>
+<span class="fc" id="L162">        List&lt;Integer&gt; subjectIds = query.list();</span>
+
+<span class="pc bpc" id="L164" title="1 of 2 branches missed.">        if (!subjectIds.isEmpty()) {</span>
+            // Return the first subject ID associated with the lecturer (you may need to modify this logic as per your requirements)
+<span class="fc" id="L166">            return subjectIds.get(0);</span>
+        }
+<span class="nc" id="L168">    } catch (Exception e) {</span>
+<span class="nc" id="L169">        e.printStackTrace();</span>
+    } finally {
+<span class="pc" id="L171">        session.close();</span>
+<span class="nc" id="L172">    }</span>
+
+<span class="nc" id="L174">    return -1; // Return -1 or another default value if no subject is found</span>
+}
+    
+    public int getIdScheduleForSubject(int idSubject) {
+<span class="fc" id="L178">    Transaction trans = null;</span>
+<span class="fc" id="L179">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L180">    int idSchedule = -1; // Default value if not found</span>
+
+    try {
+<span class="fc" id="L183">        trans = session.beginTransaction();</span>
+
+        // Query to retrieve idschedule for a specific idsubject
+<span class="nc" id="L186">        Query query = session.createQuery(&quot;SELECT s.idSchedule FROM Subject s WHERE s.idSubject = :idSubject&quot;);</span>
+<span class="nc" id="L187">        query.setParameter(&quot;idSubject&quot;, idSubject);</span>
+
+<span class="nc" id="L189">        List&lt;Integer&gt; results = query.list();</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (!results.isEmpty()) {</span>
+<span class="nc" id="L191">            idSchedule = results.get(0); // Assuming there's only one result</span>
+        }
+
+<span class="nc" id="L194">        trans.commit();</span>
+<span class="fc" id="L195">    } catch (Exception e) {</span>
+<span class="fc" id="L196">        e.printStackTrace();</span>
+<span class="pc bpc" id="L197" title="1 of 2 branches missed.">        if (trans != null) {</span>
+<span class="fc" id="L198">            trans.rollback();</span>
+        }
+    } finally {
+<span class="pc" id="L201">        session.close();</span>
+<span class="pc" id="L202">    }</span>
+
+<span class="fc" id="L204">    return idSchedule;</span>
+}
+
+    
+    
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

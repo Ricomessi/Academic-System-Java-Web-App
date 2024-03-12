@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Update Student</title>
+    </h:head>
+    <h:body>
+        <h:form id="updateStudentForm">
+            <h:panelGrid columns="2">
+                Student ID: <h:inputText value="#{student.idStudent}"/><br></br>
+                <h:commandButton value="Show Student" action="#{student.getbyid}"/><br></br>
+                Name: <h:inputText value="#{student.nama}"/><br></br>
+                Email: <h:inputText value="#{student.email}"/><br></br>
+                Password: <h:inputText value="#{student.password}"/><br></br>
+                Course: <h:selectOneMenu value="#{student.course.idClass}">
+                    <f:selectItems value="#{student.getAllCourses()}" var="course" itemValue="#{course.idClass}" itemLabel="#{course.className}"/>
+                </h:selectOneMenu><br></br>
+                <h:commandButton value="Update" action="#{student.update}"/>
+            </h:panelGrid>
+            <h:commandButton value="Kembali" action="#{admin.navigateToAllLogin}" />
+        </h:form>
+    </h:body>
+</html>

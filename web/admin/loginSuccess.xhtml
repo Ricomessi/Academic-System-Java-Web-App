@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Admin Profile</title>
+    <!-- Your Bootstrap CDN link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</h:head>
+<h:body class="">
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">Cyber University</a>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse contain" id="navbarNav">
+           
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        LecturerSubject
+                    </a>
+                    <h:form>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <h:commandButton value="Create LecturerSubject" action="#{admin.createLS}" class="dropdown-item" />
+                        <h:commandButton value="Delete LecturerSubject" action="#{admin.deleteLS}" class="dropdown-item" />
+                        <h:commandButton value="Search LecturerSubject" action="#{admin.searchLS}" class="dropdown-item" />
+                        <h:commandButton value="Show LecturerSubject" action="#{admin.showLS}" class="dropdown-item" />
+                        <h:commandButton value="Update LecturerSubject" action="#{admin.updateLS}" class="dropdown-item" />
+                    </div>
+                        
+                    </h:form>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="studentSubjectDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        StudentSubject
+                    </a>
+                    <h:form>
+                    <div class="dropdown-menu" aria-labelledby="studentSubjectDropdown">
+                        <h:commandButton value="Create StudentSubject" action="#{admin.createSS}" class="dropdown-item" />
+                        <h:commandButton value="Delete StudentSubject" action="#{admin.deleteSS}" class="dropdown-item" />
+                        <h:commandButton value="Search StudentSubject" action="#{admin.searchSS}" class="dropdown-item" />
+                        <h:commandButton value="Show StudentSubject" action="#{admin.showSS}" class="dropdown-item" />
+                        <h:commandButton value="Update StudentSubject" action="#{admin.updateSS}" class="dropdown-item" />
+                    </div>
+                    </h:form>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="courseDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Course
+                    </a>
+                    <h:form>
+                    <div class="dropdown-menu" aria-labelledby="courseDropdown">
+                        <h:commandButton value="Create Course" action="#{admin.createCourse}" class="dropdown-item" />
+                        <h:commandButton value="Delete Course" action="#{admin.deleteCourse}" class="dropdown-item" />
+                        <h:commandButton value="Search Course" action="#{admin.searchCourse}" class="dropdown-item" />
+                        <h:commandButton value="Show Course" action="#{admin.showCourse}" class="dropdown-item" />
+                        <h:commandButton value="Update Course" action="#{admin.updateCourse}" class="dropdown-item" />
+                    </div>
+                    </h:form>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="lecturerDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lecturer
+                    </a>
+                    <h:form>
+                    <div class="dropdown-menu" aria-labelledby="lecturerDropdown">
+                        <h:commandButton value="Create Lecturer" action="#{admin.createLecturer}" class="dropdown-item" />
+                        <h:commandButton value="Delete Lecturer" action="#{admin.deleteLecturer}" class="dropdown-item" />
+                        <h:commandButton value="Search Lecturer" action="#{admin.searchLecturer}" class="dropdown-item" />
+                        <h:commandButton value="Show Lecturer" action="#{admin.showLecturer}" class="dropdown-item" />
+                        <h:commandButton value="Update Lecturer" action="#{admin.updateLecturer}" class="dropdown-item" />
+                    </div>
+                    </h:form>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="scheduleDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Schedule
+                    </a>
+                    <h:form>
+                    <div class="dropdown-menu" aria-labelledby="scheduleDropdown">
+                        <h:commandButton value="Create Schedule" action="#{admin.createSchedule}" class="dropdown-item" />
+                        <h:commandButton value="Delete Schedule" action="#{admin.deleteSchedule}" class="dropdown-item" />
+                        <h:commandButton value="Search Schedule" action="#{admin.searchSchedule}" class="dropdown-item" />
+                        <h:commandButton value="Show Schedule" action="#{admin.showSchedule}" class="dropdown-item" />
+                        <h:commandButton value="Update Schedule" action="#{admin.updateSchedule}" class="dropdown-item" />
+                    </div>
+                    </h:form>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="studentDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <h:form>
+                    <div class="dropdown-menu" aria-labelledby="studentDropdown">
+                        <h:commandButton value="Create Student" action="#{admin.createStudent}" class="dropdown-item" />
+                        <h:commandButton value="Delete Student" action="#{admin.deleteStudent}" class="dropdown-item" />
+                        <h:commandButton value="Search Student" action="#{admin.searchStudent}" class="dropdown-item" />
+                        <h:commandButton value="Show Student" action="#{admin.showStudent}" class="dropdown-item" />
+                        <h:commandButton value="Update Student" action="#{admin.updateStudent}" class="dropdown-item" />
+                    </div>
+                    </h:form>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="subjectDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Subject
+                    </a>
+                    <h:form>
+                    <div class="dropdown-menu" aria-labelledby="subjectDropdown">
+                        <h:commandButton value="Create Subject" action="#{admin.createSubject}" class="dropdown-item" />
+                        <h:commandButton value="Delete Subject" action="#{admin.deleteSubject}" class="dropdown-item" />
+                        <h:commandButton value="Search Subject" action="#{admin.searchSubject}" class="dropdown-item" />
+                        <h:commandButton value="Show Subject" action="#{admin.showSubject}" class="dropdown-item" />
+                        <h:commandButton value="Update Subject" action="#{admin.updateSubject}" class="dropdown-item" />
+                    </div>
+                    </h:form>
+                </li>
+                
+                <!-- Tambahkan dropdowns untuk jenis h:commandButton lainnya di sini -->
+            </ul>
+        </div>
+    </nav>
+    
+        <header class="py-5 bg-image-full" style="background-image: linear-gradient(to top, #2e4374, #60444461),url(img/Cover.jpg)">
+            <div class="text-center my-5">
+                <h1 class="text-white fs-3 fw-bolder">Chase your dream with us</h1>
+                <p class="text-white-50 mb-0">Beyond your limit</p>
+            </div>
+        </header>
+    <div class="container vh-100 d-flex flex-column justify-content-center ">
+     <h2 class="mt-4">Admin Profile</h2>
+      <h:panelGroup rendered="#{not empty admin}">
+                <div class="form-group">
+                    <h:outputLabel for="email" value="Email: " />
+                    <h:outputText id="email" value="#{email}" />
+                </div>
+           <h:form>
+                    <p>
+                        <h:commandButton class="btn btn-primary" value="Logout" action="#{admin.logout}" />
+                    </p>
+                </h:form>
+            </h:panelGroup>
+     
+            <h:panelGroup rendered="#{empty admin}">
+                <div class="alert alert-danger">
+                    Access Denied
+                </div>
+                
+            </h:panelGroup>
+        
+    </div>
+    
+    <footer class="py-5 mt-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright Cyber university 2023</p></div>
+    </footer>
+    <!-- Your Bootstrap and JSF JavaScript CDN links here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</h:body>
+</html>

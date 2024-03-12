@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Subject.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AAA111&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">pojo</a> &gt; <span class="el_source">Subject.java</span></div><h1>Subject.java</h1><pre class="source lang-java linenums">package pojo;
+
+import dao.DAOSubject;
+import dao.DAOSchedule;
+import pojo.Course;
+import pojo.Schedule;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+@ManagedBean
+public class Subject implements java.io.Serializable {
+
+    private Integer idSubject;
+    private Schedule schedule;
+    private String subjectName;
+    private Integer credit;
+    private Schedule selectedSchedule; // Tambahkan variabel untuk menyimpan schedule yang dipilih
+    private String startDate; // Tambahkan variabel untuk start date
+    private String dueDate; // Tambahkan variabel untuk due date
+    private String selectedClass; // Tambahkan variabel untuk class yang dipilih
+<span class="pc" id="L27">    private Set studentsubjects = new HashSet(0);</span>
+<span class="pc" id="L28">    private Set lecturersubjects = new HashSet(0);</span>
+    private Course course;
+    private Integer scheduleId;
+
+<span class="fc" id="L32">    public Subject() {</span>
+<span class="fc" id="L33">        this.schedule = new Schedule();</span>
+<span class="fc" id="L34">        this.course = new Course();</span>
+<span class="fc" id="L35">    }</span>
+
+<span class="nc" id="L37">    public Subject(Schedule schedule, String subjectName, Integer credit, Set studentsubjects, Set lecturersubjects) {</span>
+<span class="nc" id="L38">        this.schedule = schedule;</span>
+<span class="nc" id="L39">        this.subjectName = subjectName;</span>
+<span class="nc" id="L40">        this.credit = credit;</span>
+<span class="nc" id="L41">        this.studentsubjects = studentsubjects;</span>
+<span class="nc" id="L42">        this.lecturersubjects = lecturersubjects;</span>
+<span class="nc" id="L43">    }</span>
+    
+    
+    public Integer getScheduleId() {
+<span class="nc" id="L47">    return scheduleId;</span>
+}
+
+public void setScheduleId(Integer scheduleId) {
+<span class="nc" id="L51">    this.scheduleId = scheduleId;</span>
+<span class="nc" id="L52">}</span>
+
+    public Course getCourse() {
+<span class="nc" id="L55">    return this.course;</span>
+}
+
+    public Integer getIdSubject() {
+<span class="fc" id="L59">        return this.idSubject;</span>
+    }
+
+    public void setIdSubject(Integer idSubject) {
+<span class="fc" id="L63">        this.idSubject = idSubject;</span>
+<span class="fc" id="L64">    }</span>
+
+    public Schedule getSchedule() {
+<span class="fc" id="L67">        return this.schedule;</span>
+    }
+
+    public void setSchedule(Schedule schedule) {
+<span class="fc" id="L71">        this.schedule = schedule;</span>
+<span class="fc" id="L72">    }</span>
+
+    public String getSubjectName() {
+<span class="fc" id="L75">        return this.subjectName;</span>
+    }
+
+    public void setSubjectName(String subjectName) {
+<span class="fc" id="L79">        this.subjectName = subjectName;</span>
+<span class="fc" id="L80">    }</span>
+
+    public Integer getCredit() {
+<span class="fc" id="L83">        return this.credit;</span>
+    }
+
+    public void setCredit(Integer credit) {
+<span class="fc" id="L87">        this.credit = credit;</span>
+<span class="fc" id="L88">    }</span>
+    
+    
+
+    public Set getStudentsubjects() {
+<span class="fc" id="L93">        return this.studentsubjects;</span>
+    }
+
+    public void setStudentsubjects(Set studentsubjects) {
+<span class="fc" id="L97">        this.studentsubjects = studentsubjects;</span>
+<span class="fc" id="L98">    }</span>
+
+    public Set getLecturersubjects() {
+<span class="fc" id="L101">        return this.lecturersubjects;</span>
+    }
+
+    public void setLecturersubjects(Set lecturersubjects) {
+<span class="fc" id="L105">        this.lecturersubjects = lecturersubjects;</span>
+<span class="fc" id="L106">    }</span>
+
+    public Schedule getSelectedSchedule() {
+<span class="nc" id="L109">        return selectedSchedule;</span>
+    }
+
+    // Tambahkan getter untuk startDate
+    public String getStartDate() {
+<span class="nc" id="L114">        return startDate;</span>
+    }
+
+    // Tambahkan getter untuk dueDate
+    public String getDueDate() {
+<span class="nc" id="L119">        return dueDate;</span>
+    }
+
+    // Tambahkan getter untuk selectedClass
+    public String getSelectedClass() {
+<span class="nc" id="L124">        return selectedClass;</span>
+    }
+
+    public void addSubject() {
+<span class="nc" id="L128">        DAOSubject subjectDao = new DAOSubject();</span>
+        try {
+            // Implement your add subject logic here
+            // Example:
+<span class="nc" id="L132">            subjectDao.addSubject(this);</span>
+<span class="nc" id="L133">        } catch (Exception e) {</span>
+<span class="nc" id="L134">            e.printStackTrace();</span>
+            // Handle exceptions, e.g., display an error message
+<span class="nc" id="L136">        }</span>
+<span class="nc" id="L137">    }</span>
+
+    public void deleteSubject() {
+<span class="nc" id="L140">        DAOSubject subjectDao = new DAOSubject();</span>
+        try {
+            // Implement your delete subject logic here
+            // Example:
+<span class="nc" id="L144">            subjectDao.deleteSubject(this.idSubject);</span>
+<span class="nc" id="L145">        } catch (Exception e) {</span>
+<span class="nc" id="L146">            e.printStackTrace();</span>
+            // Handle exceptions, e.g., display an error message
+<span class="nc" id="L148">        }</span>
+<span class="nc" id="L149">    }</span>
+
+    public Subject getSubjectById() {
+<span class="nc" id="L152">    DAOSubject subjectDao = new DAOSubject();</span>
+    try {
+        // Implement your get subject by ID logic here
+        // Example:
+<span class="nc" id="L156">        Subject foundSubject = subjectDao.getSubjectByID(idSubject);</span>
+        
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if (foundSubject != null) {</span>
+            // Jika subjek ditemukan, set properti subjek dengan hasil pencarian
+<span class="nc" id="L160">            this.idSubject = foundSubject.getIdSubject();</span>
+<span class="nc" id="L161">            this.subjectName = foundSubject.getSubjectName();</span>
+<span class="nc" id="L162">            this.credit = foundSubject.getCredit();</span>
+<span class="nc" id="L163">            this.scheduleId = foundSubject.getSchedule().getIdSchedule();</span>
+        } else {
+            // Jika subjek tidak ditemukan, bersihkan properti subjek
+<span class="nc" id="L166">            this.idSubject = null;</span>
+<span class="nc" id="L167">            this.subjectName = null;</span>
+<span class="nc" id="L168">            this.credit = null;</span>
+<span class="nc" id="L169">            this.scheduleId = null;</span>
+        }
+        
+<span class="nc" id="L172">        return foundSubject;</span>
+<span class="nc" id="L173">    } catch (Exception e) {</span>
+<span class="nc" id="L174">        e.printStackTrace();</span>
+        // Handle exceptions, e.g., display an error message
+<span class="nc" id="L176">        return null;</span>
+    }
+}
+
+
+    public List&lt;Subject&gt; getAllSubjects() {
+<span class="nc" id="L182">        DAOSubject subjectDao = new DAOSubject();</span>
+        try {
+            // Implement your get all subjects logic here
+            // Example:
+<span class="nc" id="L186">            return subjectDao.retrieveAllSubjects();</span>
+<span class="nc" id="L187">        } catch (Exception e) {</span>
+<span class="nc" id="L188">            e.printStackTrace();</span>
+            // Handle exceptions, e.g., display an error message
+<span class="nc" id="L190">            return new ArrayList&lt;&gt;();</span>
+        }
+    }
+
+    public void updateSubject() {
+<span class="nc" id="L195">        DAOSubject subjectDao = new DAOSubject();</span>
+        try {
+            // Implement your update subject logic here
+            // Example:
+<span class="nc" id="L199">            subjectDao.updateSubject(this);</span>
+<span class="nc" id="L200">        } catch (Exception e) {</span>
+<span class="nc" id="L201">            e.printStackTrace();</span>
+            // Handle exceptions, e.g., display an error message
+<span class="nc" id="L203">        }</span>
+<span class="nc" id="L204">    }</span>
+
+    public void selectSchedule(int scheduleId) {
+<span class="nc" id="L207">        DAOSchedule scheduleDao = new DAOSchedule(); // Ganti dengan DAO Schedule yang sesuai</span>
+        try {
+            // Implementasi untuk mengambil detail schedule berdasarkan scheduleId
+<span class="nc" id="L210">            Schedule selectedSchedule = scheduleDao.getScheduleByID(scheduleId);</span>
+
+            // Set nilai start date, due date, dan class pada form
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (selectedSchedule != null) {</span>
+<span class="nc" id="L214">                this.selectedSchedule = selectedSchedule;</span>
+                // Atur nilai start date, due date, dan class ke form
+<span class="nc" id="L216">                this.startDate = selectedSchedule.getStartDate();</span>
+<span class="nc" id="L217">                this.dueDate = selectedSchedule.getDueDate();</span>
+<span class="nc" id="L218">                this.selectedClass = selectedSchedule.getCourse().getClassName();</span>
+            }
+<span class="nc" id="L220">        } catch (Exception e) {</span>
+<span class="nc" id="L221">            e.printStackTrace();</span>
+            // Handle exceptions, e.g., display an error message
+<span class="nc" id="L223">        }</span>
+<span class="nc" id="L224">    }</span>
+    
+    public List&lt;Schedule&gt; getAllSchedules() {
+<span class="nc" id="L227">    DAOSchedule scheduleDao = new DAOSchedule(); // Ganti dengan DAO Schedule yang sesuai</span>
+    try {
+        // Implementasi untuk mendapatkan semua jadwal
+<span class="nc" id="L230">        return scheduleDao.retrieveAllSchedules();</span>
+<span class="nc" id="L231">    } catch (Exception e) {</span>
+<span class="nc" id="L232">        e.printStackTrace();</span>
+        // Handle exceptions, e.g., display an error message
+<span class="nc" id="L234">        return new ArrayList&lt;&gt;();</span>
+    }
+}
+    public void saveSubject() {
+<span class="nc" id="L238">    DAOSubject subjectDao = new DAOSubject();</span>
+    try {
+        // Implement your save subject logic here
+        // Contoh:
+<span class="nc" id="L242">        subjectDao.addSubject(this);</span>
+<span class="nc" id="L243">    } catch (Exception e) {</span>
+<span class="nc" id="L244">        e.printStackTrace();</span>
+        // Tangani eksepsi, misalnya tampilkan pesan kesalahan
+<span class="nc" id="L246">    }</span>
+<span class="nc" id="L247">}</span>
+    
+    public List&lt;Subject&gt; getAllSubjectsForLoggedInLecturer() {
+    try {
+        // Get idSubject from the lecturer's login session
+<span class="nc" id="L252">        int idSubject = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(&quot;loggedInLecturerSubject&quot;);</span>
+
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        if (idSubject &lt;= 0) {</span>
+<span class="nc" id="L255">            throw new NullPointerException(&quot;idSubject is null or invalid&quot;); // Simulate a NullPointerException</span>
+        }
+
+<span class="nc" id="L258">        DAOSubject subjectDao = new DAOSubject(); // Replace with the appropriate Subject DAO</span>
+<span class="nc" id="L259">        List&lt;Subject&gt; allSubjects = subjectDao.retrieveAllSubjects(); // Get all subjects</span>
+
+<span class="nc" id="L261">        List&lt;Subject&gt; subjectsForLoggedInLecturer = new ArrayList&lt;&gt;();</span>
+
+        // Filter subjects based on idSubject
+<span class="nc bnc" id="L264" title="All 2 branches missed.">        for (Subject subject : allSubjects) {</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            if (subject.getIdSubject() == idSubject) {</span>
+<span class="nc" id="L266">                subjectsForLoggedInLecturer.add(subject);</span>
+            }
+<span class="nc" id="L268">        }</span>
+
+<span class="nc" id="L270">        return subjectsForLoggedInLecturer;</span>
+<span class="nc" id="L271">    } catch (NullPointerException e) {</span>
+        // Handle the NullPointerException, log it, and provide a user-friendly message
+<span class="nc" id="L273">        FacesContext context = FacesContext.getCurrentInstance();</span>
+<span class="nc" id="L274">        context.addMessage(null, new FacesMessage(&quot;ACCESS DENIED!!!&quot;));</span>
+<span class="nc" id="L275">        e.printStackTrace(); // Log the exception (you can replace this with proper logging)</span>
+<span class="nc" id="L276">        return new ArrayList&lt;&gt;(); // Return an empty list or another appropriate default value</span>
+    }
+}
+
+    
+   public List&lt;Subject&gt; getAllSubjectsForLoggedInStudent() {
+    try {
+        // Dapatkan idSubject dari sesi login mahasiswa
+<span class="nc" id="L284">        int idSubject = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(&quot;loggedInStudentSubject&quot;);</span>
+
+<span class="nc bnc" id="L286" title="All 2 branches missed.">        if (idSubject &lt;= 0) {</span>
+<span class="nc" id="L287">            throw new NullPointerException(&quot;idSubject is null or invalid&quot;); // Simulasikan NullPointerException</span>
+        }
+
+<span class="nc" id="L290">        DAOSubject subjectDao = new DAOSubject(); // Gantilah dengan DAO Subject yang sesuai</span>
+<span class="nc" id="L291">        List&lt;Subject&gt; allSubjects = subjectDao.retrieveAllSubjects(); // Dapatkan semua subjek</span>
+
+<span class="nc" id="L293">        List&lt;Subject&gt; subjectsForLoggedInStudent = new ArrayList&lt;&gt;();</span>
+
+        // Filter subjek sesuai dengan idSubject
+<span class="nc bnc" id="L296" title="All 2 branches missed.">        for (Subject subject : allSubjects) {</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            if (subject.getIdSubject() == idSubject) {</span>
+<span class="nc" id="L298">                subjectsForLoggedInStudent.add(subject);</span>
+            }
+<span class="nc" id="L300">        }</span>
+
+<span class="nc" id="L302">        return subjectsForLoggedInStudent;</span>
+<span class="nc" id="L303">    } catch (NullPointerException e) {</span>
+        // Tangani NullPointerException, catat, dan berikan pesan yang ramah pengguna
+<span class="nc" id="L305">        FacesContext context = FacesContext.getCurrentInstance();</span>
+<span class="nc" id="L306">        context.addMessage(null, new FacesMessage(&quot;ACCESS DENIED!!!&quot;));</span>
+<span class="nc" id="L307">        e.printStackTrace(); // Catat exception (Anda dapat menggantinya dengan logging yang sesuai)</span>
+<span class="nc" id="L308">        return new ArrayList&lt;&gt;(); // Kembalikan daftar kosong atau nilai default yang sesuai</span>
+    }
+}
+
+
+   
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

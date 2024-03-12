@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</h:head>
+<h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cyber University</a>
+            </div>
+        </nav>
+        <header class="py-5 bg-image-full" style="background-image: linear-gradient(to top, #2e4374, #60444461),url(img/Cover.jpg)">
+            <div class="text-center my-5">
+                <h1 class="text-white fs-3 fw-bolder">Chase your dream with us</h1>
+                <p class="text-white-50 mb-0">Beyond your limit</p>
+            </div>
+        </header>
+        <div class="container d-flex flex-column vh-100 justify-content-center">
+            
+        <h:form class="form-signin">
+            <h2 class="h3 mb-3 font-weight-normal">Login</h2>
+            <h:messages class="alert alert-danger" />
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <h:inputText class="form-control" value="#{student.email}"  />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <h:inputSecret id="password" class="form-control" value="#{student.password}" />
+            </div>
+            <div class="form-group">
+                <h:commandButton class="btn btn-primary" value="Login" action="#{student.login}" />
+            </div>
+              
+        </h:form>
+        </div>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright Cyber university 2023</p></div>
+        </footer>
+</h:body>
+</html>

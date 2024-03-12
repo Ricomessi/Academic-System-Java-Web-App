@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>List of Students</title>
+        <!-- Tambahkan referensi Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cyber University</a>
+            </div>
+        </nav>
+        <header class="py-5 bg-image-full" style="background-image: linear-gradient(to top, #2e4374, #60444461),url(img/Cover.jpg)">
+            <div class="text-center my-5">
+                <h1 class="text-white fs-3 fw-bolder">Chase your dream with us</h1>
+                <p class="text-white-50 mb-0">Beyond your limit</p>
+            </div>
+        </header>
+        <div class="container d-flex flex-column vh-100 justify-content-center">
+            <h:dataTable value="#{student.getallrecords()}" var="student" styleClass="table table-striped">
+                <h:column>
+                    <f:facet name="header">Student ID</f:facet>
+                    #{student.idStudent}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{student.nama}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    #{student.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Password</f:facet>
+                    #{student.password}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Course Name</f:facet>
+                    #{student.getCourseNameByStudentEmail(student.email)}
+                </h:column>
+            </h:dataTable>
+            <h:form><h:commandButton value="Kembali" class="btn btn-secondary" action="#{admin.navigateToAllLogin}" /></h:form>
+        </div>
+        
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright Cyber university 2023</p></div>
+        </footer>
+    </h:body>
+</html>

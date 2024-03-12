@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DAOSchedule.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AAA111&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">DAOSchedule.java</span></div><h1>DAOSchedule.java</h1><pre class="source lang-java linenums">package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import pojo.NewHibernateUtil;
+import pojo.Schedule;
+
+<span class="fc" id="L11">public class DAOSchedule {</span>
+
+    public void addSchedule(Schedule schedule) {
+<span class="fc" id="L14">        Transaction trans = null;</span>
+<span class="fc" id="L15">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L17">            trans = session.beginTransaction();</span>
+<span class="fc" id="L18">            session.save(schedule);</span>
+<span class="nc" id="L19">            trans.commit();</span>
+<span class="fc" id="L20">        } catch (Exception e) {</span>
+<span class="fc" id="L21">            e.printStackTrace();</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">            if (trans != null) {</span>
+<span class="fc" id="L23">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L26">            session.close();</span>
+<span class="pc" id="L27">        }</span>
+<span class="fc" id="L28">    }</span>
+
+    public void deleteSchedule(int idSchedule) {
+<span class="fc" id="L31">        Transaction trans = null;</span>
+<span class="fc" id="L32">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L34">            trans = session.beginTransaction();</span>
+<span class="fc" id="L35">            Schedule schedule = (Schedule) session.get(Schedule.class, idSchedule);</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">            if (schedule != null) {</span>
+<span class="nc" id="L37">                session.delete(schedule);</span>
+<span class="nc" id="L38">                trans.commit();</span>
+            }
+<span class="nc" id="L40">        } catch (Exception e) {</span>
+<span class="nc" id="L41">            e.printStackTrace();</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (trans != null) {</span>
+<span class="nc" id="L43">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L46">            session.close();</span>
+<span class="pc" id="L47">        }</span>
+<span class="fc" id="L48">    }</span>
+
+    public Schedule getScheduleByID(int idSchedule) {
+<span class="fc" id="L51">        Schedule schedule = null;</span>
+<span class="fc" id="L52">        Transaction trans = null;</span>
+<span class="fc" id="L53">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L55">            trans = session.beginTransaction();</span>
+<span class="fc" id="L56">            schedule = (Schedule) session.get(Schedule.class, idSchedule);</span>
+<span class="fc" id="L57">            trans.commit();</span>
+<span class="nc" id="L58">        } catch (Exception e) {</span>
+<span class="nc" id="L59">            e.printStackTrace();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (trans != null) {</span>
+<span class="nc" id="L61">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L64">            session.close();</span>
+<span class="pc" id="L65">        }</span>
+<span class="fc" id="L66">        return schedule;</span>
+    }
+
+    public List&lt;Schedule&gt; retrieveAllSchedules() {
+<span class="fc" id="L70">    List&lt;Schedule&gt; schedules = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L71">    Transaction trans = null;</span>
+<span class="fc" id="L72">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+    try {
+<span class="fc" id="L74">        trans = session.beginTransaction();</span>
+<span class="fc" id="L75">        Query query = session.createQuery(&quot;from Schedule&quot;);</span>
+<span class="fc" id="L76">        schedules = query.list();</span>
+<span class="fc" id="L77">        trans.commit();</span>
+<span class="nc" id="L78">    } catch (Exception e) {</span>
+<span class="nc" id="L79">        e.printStackTrace();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (trans != null) {</span>
+<span class="nc" id="L81">            trans.rollback();</span>
+        }
+    } finally {
+<span class="pc" id="L84">        session.close();</span>
+<span class="pc" id="L85">    }</span>
+<span class="fc" id="L86">    return schedules;</span>
+}
+
+
+    public void updateSchedule(Schedule schedule) {
+<span class="fc" id="L91">        Transaction trans = null;</span>
+<span class="fc" id="L92">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L94">            trans = session.beginTransaction();</span>
+<span class="fc" id="L95">            session.update(schedule);</span>
+<span class="fc" id="L96">            trans.commit();</span>
+<span class="nc" id="L97">        } catch (Exception e) {</span>
+<span class="nc" id="L98">            e.printStackTrace();</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (trans != null) {</span>
+<span class="nc" id="L100">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L103">            session.close();</span>
+<span class="pc" id="L104">        }</span>
+<span class="fc" id="L105">    }</span>
+    
+    public List&lt;Schedule&gt; getAllSchedules() {
+<span class="fc" id="L108">        List&lt;Schedule&gt; schedules = null;</span>
+<span class="fc" id="L109">        Transaction trans = null;</span>
+<span class="fc" id="L110">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L112">            trans = session.beginTransaction();</span>
+<span class="fc" id="L113">            Query query = session.createQuery(&quot;from Schedule&quot;);</span>
+<span class="fc" id="L114">            schedules = query.list();</span>
+<span class="fc" id="L115">            trans.commit();</span>
+<span class="nc" id="L116">        } catch (Exception e) {</span>
+<span class="nc" id="L117">            e.printStackTrace();</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (trans != null) {</span>
+<span class="nc" id="L119">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L122">            session.close();</span>
+<span class="pc" id="L123">        }</span>
+<span class="fc" id="L124">        return schedules;</span>
+    }
+
+   public Schedule getScheduleById(int scheduleId) {
+<span class="fc" id="L128">    Transaction trans = null;</span>
+<span class="fc" id="L129">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L130">    Schedule schedule = null;</span>
+    
+    try {
+<span class="fc" id="L133">        trans = session.beginTransaction();</span>
+<span class="fc" id="L134">        Query query = session.createQuery(&quot;from Schedule where idSchedule = :scheduleId&quot;);</span>
+<span class="fc" id="L135">        query.setParameter(&quot;scheduleId&quot;, scheduleId);</span>
+<span class="fc" id="L136">        schedule = (Schedule) query.uniqueResult();</span>
+<span class="fc" id="L137">        trans.commit();</span>
+<span class="nc" id="L138">    } catch (Exception e) {</span>
+<span class="nc" id="L139">        e.printStackTrace();</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">        if (trans != null) {</span>
+<span class="nc" id="L141">            trans.rollback();</span>
+        }
+    } finally {
+<span class="pc" id="L144">        session.close();</span>
+<span class="pc" id="L145">    }</span>
+    
+<span class="fc" id="L147">    return schedule;</span>
+}
+
+    
+public String getCourseNameByScheduleId(Integer scheduleId) {
+<span class="fc" id="L152">    Transaction trans = null;</span>
+<span class="fc" id="L153">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L154">    String courseName = null;</span>
+
+    try {
+<span class="fc" id="L157">        trans = session.beginTransaction();</span>
+<span class="fc" id="L158">        Query scheduleQuery = session.createQuery(&quot;select course.className from Schedule schedule where schedule.idSchedule = :scheduleId&quot;);</span>
+<span class="fc" id="L159">        scheduleQuery.setInteger(&quot;scheduleId&quot;, scheduleId);</span>
+<span class="fc" id="L160">        courseName = (String) scheduleQuery.uniqueResult();</span>
+<span class="fc" id="L161">        trans.commit();</span>
+<span class="nc" id="L162">    } catch (Exception e) {</span>
+<span class="nc" id="L163">        e.printStackTrace();</span>
+    } finally {
+<span class="pc" id="L165">        session.close();</span>
+<span class="pc" id="L166">    }</span>
+
+<span class="fc" id="L168">    return courseName;</span>
+}
+
+public int getIdScheduleForSubject(int idSubject) {
+<span class="fc" id="L172">    Transaction trans = null;</span>
+<span class="fc" id="L173">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L174">    int idSchedule = -1; // Default value if not found</span>
+
+    try {
+<span class="fc" id="L177">        trans = session.beginTransaction();</span>
+
+        // Query to retrieve idschedule for a specific idsubject
+<span class="nc" id="L180">        Query query = session.createQuery(&quot;SELECT s.idSchedule FROM Subject s WHERE s.idSubject = :idSubject&quot;);</span>
+<span class="nc" id="L181">        query.setParameter(&quot;idSubject&quot;, idSubject);</span>
+
+<span class="nc" id="L183">        List&lt;Integer&gt; results = query.list();</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        if (!results.isEmpty()) {</span>
+<span class="nc" id="L185">            idSchedule = results.get(0); // Assuming there's only one result</span>
+        }
+
+<span class="nc" id="L188">        trans.commit();</span>
+<span class="fc" id="L189">    } catch (Exception e) {</span>
+<span class="fc" id="L190">        e.printStackTrace();</span>
+<span class="pc bpc" id="L191" title="1 of 2 branches missed.">        if (trans != null) {</span>
+<span class="fc" id="L192">            trans.rollback();</span>
+        }
+    } finally {
+<span class="pc" id="L195">        session.close();</span>
+<span class="pc" id="L196">    }</span>
+
+<span class="fc" id="L198">    return idSchedule;</span>
+}
+
+    
+
+    }
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

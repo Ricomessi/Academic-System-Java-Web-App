@@ -1,0 +1,809 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        
+       
+        
+        <from-view-id>lecturer/search.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{lecturer.getbyid}</from-action>
+            <to-view-id>lecturer/search.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>lecturer/update.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{lecturer.getbyid}</from-action>
+            <to-view-id>lecturer/update.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/lecturer/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>loginsuccess</from-outcome>
+            <to-view-id>/lecturer/loginSuccess.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/student/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>loginsuccess</from-outcome>
+            <to-view-id>/student/loginSuccess.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>loginsuccess</from-outcome>
+            <to-view-id>/admin/loginSuccess.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>student/search.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{student.getbyid}</from-action>
+            <to-view-id>student/search.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>student/update.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{student.getbyid}</from-action>
+            <to-view-id>student/update.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <from-view-id>/course/search.xhtml</from-view-id>
+<navigation-case>
+    <from-action>#{course.getSearchCourses}</from-action>
+    <to-view-id>/course/search.xhtml</to-view-id>
+</navigation-case>
+
+<from-view-id>/course/update.xhtml</from-view-id>
+<navigation-case>
+    <from-action>#{course.getSearchCourses}</from-action>
+    <to-view-id>/course/search.xhtml</to-view-id>
+</navigation-case>
+
+<navigation-rule>
+    <from-view-id>/subject/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-action>#{subject.getSubjectById}</from-action>
+        <to-view-id>/subject/search.xhtml</to-view-id> <!-- Gantilah dengan halaman yang sesuai -->
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/schedule/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-action>#{schedule.getSubjectById}</from-action>
+        <to-view-id>/schedule/search.xhtml</to-view-id> <!-- Gantilah dengan halaman yang sesuai -->
+    </navigation-case>
+</navigation-rule>
+
+
+
+
+<navigation-rule>
+    <from-view-id>/schedule/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-action>#{schedule.getById}</from-action>
+        <to-view-id>/schedule/search.xhtml</to-view-id> <!-- Gantilah dengan halaman yang sesuai -->
+    </navigation-case>
+</navigation-rule>
+
+
+
+
+    
+    
+    <navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>cls</from-outcome> 
+        <to-view-id>/lecturer/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+    
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>dls</from-outcome> 
+        <to-view-id>/lecturer/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>dls</from-outcome> 
+        <to-view-id>/lecturer/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+<navigation-rule>
+    <from-view-id>/lecturer/create.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/lecturer/delete.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+<navigation-rule>
+    <from-view-id>/lecturer/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/lecturer/show.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/lecturer/update.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/LecturerSubject/create.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/LecturerSubject/delete.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/LecturerSubject/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/LecturerSubject/show.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/LecturerSubject/update.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/StudentSubject/create.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/StudentSubject/delete.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/StudentSubject/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/StudentSubject/search_1.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/StudentSubject/show.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/course/create.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/course/delete.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/course/show.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/course/update.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/schedule/create.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/schedule/delete.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/schedule/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/schedule/show.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/schedule/update.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/student/create.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/student/delete.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/student/login.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/student/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/student/show.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/student/update.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/subject/create.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/subject/delete.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/subject/search.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/subject/show.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/subject/update.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/login.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+
+
+<navigation-rule>
+    <from-view-id>/student/loginSuccess.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>allLoginRedirect</from-outcome>
+        <to-view-id>/alllogin.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>css</from-outcome> 
+        <to-view-id>/StudentSubject/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>dss</from-outcome> 
+        <to-view-id>/StudentSubject/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>sess</from-outcome> 
+        <to-view-id>/StudentSubject/search.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>shss</from-outcome> 
+        <to-view-id>/StudentSubject/show.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>uss</from-outcome> 
+        <to-view-id>/StudentSubject/update.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>cc</from-outcome> 
+        <to-view-id>/course/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>dc</from-outcome> 
+        <to-view-id>/course/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>sec</from-outcome> 
+        <to-view-id>/course/search.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>shc</from-outcome> 
+        <to-view-id>/course/show.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>uc</from-outcome> 
+        <to-view-id>/course/update.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>cl</from-outcome> 
+        <to-view-id>lecturer/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>dl</from-outcome> 
+        <to-view-id>/lecturer/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>sel</from-outcome> 
+        <to-view-id>/lecturer/search.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>shl</from-outcome> 
+        <to-view-id>/lecturer/show.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>ul</from-outcome> 
+        <to-view-id>/lecturer/update.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>csc</from-outcome> 
+        <to-view-id>/schedule/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>dsc</from-outcome> 
+        <to-view-id>/schedule/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>sesc</from-outcome> 
+        <to-view-id>/schedule/search.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>shsc</from-outcome> 
+        <to-view-id>/schedule/show.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>usc</from-outcome> 
+        <to-view-id>/schedule/update.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>cs</from-outcome> 
+        <to-view-id>/student/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>ds</from-outcome> 
+        <to-view-id>/student/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>ses</from-outcome> 
+        <to-view-id>/student/search.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>shs</from-outcome> 
+        <to-view-id>/student/show.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>ul</from-outcome> 
+        <to-view-id>/student/update.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>csb</from-outcome> 
+        <to-view-id>/subject/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>dsb</from-outcome> 
+        <to-view-id>/subject/delete.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>sesb</from-outcome> 
+        <to-view-id>/subject/search.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>shsb</from-outcome> 
+        <to-view-id>/subject/show.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/loginSuccess.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>usb</from-outcome> 
+        <to-view-id>/subject/update.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+
+
+
+
+
+
+<navigation-rule>
+    <from-view-id>/alllogin.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>al</from-outcome> 
+        <to-view-id>/admin/login.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/alllogin.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>sl</from-outcome> 
+        <to-view-id>/student/login.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/alllogin.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>sr</from-outcome> 
+        <to-view-id>/student/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/alllogin.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>ll</from-outcome> 
+        <to-view-id>/lecturer/login.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/alllogin.xhtml</from-view-id> 
+    <navigation-case>
+        <from-outcome>lr</from-outcome> 
+        <to-view-id>/lecturer/create.xhtml</to-view-id> 
+        <redirect />
+    </navigation-case>
+</navigation-rule>
+
+
+
+
+<navigation-rule>
+        <from-view-id>/admin/loginSuccess.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{admin.logout}</from-action>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/alllogin.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/student/loginSuccess.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{student.logout}</from-action>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/alllogin.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/lecturer/loginSuccess.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{lecturer.logout}</from-action>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/alllogin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

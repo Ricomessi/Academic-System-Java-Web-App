@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Show Lecturer</title>
+    </h:head>
+    <h:body>
+        <h:form id="getbyid">
+            <h:panelGrid columns="2">
+                Lecturer ID: <h:inputText value="#{lecturer.idLecturer}"/>
+                <h:commandButton value="Show Lecturer" action="#{lecturer.getById}"/>
+            </h:panelGrid>
+            <h:outputText value="Name: #{lecturer.name}" rendered="#{not empty lecturer.name}"/>
+            <h:outputText value="Email: #{lecturer.email}" rendered="#{not empty lecturer.email}"/>
+            <h:outputText value="Password: #{lecturer.password}" rendered="#{not empty lecturer.password}"/>
+            <h:commandButton value="Kembali" action="#{admin.navigateToAllLogin}" class="btn btn-secondary mt-2" />
+             <h:commandButton value="Kembali" action="#{admin.navigateToAllLogin}" />
+        </h:form><br></br><br></br>
+    </h:body>
+</html>

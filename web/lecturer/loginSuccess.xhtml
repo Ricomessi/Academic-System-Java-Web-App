@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</h:head>
+
+<h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cyber University</a>
+            </div>
+        </nav>
+        <header class="py-5 bg-image-full" style="background-image: linear-gradient(to top, #2e4374, #60444461),url(img/Cover.jpg)">
+            <div class="text-center my-5">
+                <h1 class="text-white fs-3 fw-bolder">Chase your dream with us</h1>
+                <p class="text-white-50 mb-0">Beyond your limit</p>
+            </div>
+        </header>
+        <div class="container d-flex flex-column vh-100 justify-content-center">
+        <h2>User Profile</h2>
+
+        <h:panelGroup rendered="#{not empty lecturer}">
+            <div class="form-group">
+                <h:outputLabel for="email" value="Email: " />
+                <h:outputText id="email" value="#{email}" />
+            </div>
+
+            <!-- Add more fields to display other user information as needed -->
+            <!-- For example, you can display the department of the lecturer -->
+
+            <h:form>
+                <p>
+                    <h:commandButton class="btn btn-primary" value="Logout" action="#{lecturer.logout}" />
+                </p>
+            </h:form>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{email = null}">
+            <div class="alert alert-danger">
+                Access Denied
+            </div>
+        </h:panelGroup>
+
+    <div class="container mt-5">
+    <h2>List of Lecturer Subjects</h2>
+
+</div>
+
+        
+        <h:dataTable border="1" value="#{subject.getAllSubjectsForLoggedInLecturer()}" var="subject" cellspacing="0" styleClass="table">
+    <h:column>
+        <f:facet name="header">Subject ID</f:facet>
+        #{subject.idSubject}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Subject Name</f:facet>
+        #{subject.subjectName}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Credit</f:facet>
+        #{subject.credit}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Schedule ID</f:facet>
+        #{subject.schedule.idSchedule}
+    </h:column>
+            
+</h:dataTable>
+ 
+         
+        <h:dataTable class="table" border="1" value="#{schedule.getAllRecords()}" var="schedule" cellspacing="0">
+                <h:column>
+                    <f:facet name="header">Course Name</f:facet>
+                    #{schedule.getCourseNameByScheduleId(schedule.idSchedule)}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Due Time</f:facet>
+                    #{schedule.dueTime}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Start Time</f:facet>
+                    #{schedule.startTime}
+                </h:column>
+                <!-- Other columns as needed -->
+            </h:dataTable>
+
+ 
+
+
+        </div>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright Cyber university 2023</p></div>
+        </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </h:body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>List of Schedules</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cyber University</a>
+            </div>
+        </nav>
+        <header class="py-5 bg-image-full" style="background-image: linear-gradient(to top, #2e4374, #60444461),url(img/Cover.jpg)">
+            <div class="text-center my-5">
+                <h1 class="text-white fs-3 fw-bolder">Chase your dream with us</h1>
+                <p class="text-white-50 mb-0">Beyond your limit</p>
+            </div>
+        </header>
+        <div class="container d-flex min-vh-100 flex-column py-5">
+        <h:form>
+            <h:dataTable class="table" border="1" value="#{schedule.getAllRecords()}" var="schedule" cellspacing="0">
+                <h:column>
+                    <f:facet name="header">Course Name</f:facet>
+                    #{schedule.getCourseNameByScheduleId(schedule.idSchedule)}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Due Time</f:facet>
+                    #{schedule.dueTime}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Start Time</f:facet>
+                    #{schedule.startTime}
+                </h:column>
+                <!-- Other columns as needed -->
+            </h:dataTable>
+           <h:commandButton value="Kembali" action="#{admin.navigateToAllLogin}" class="btn btn-secondary mt-2" />
+        </h:form>
+            
+        </div>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright Cyber University 2023</p></div>
+        </footer>
+    </h:body>
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DAOStudentSubject.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AAA111&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">DAOStudentSubject.java</span></div><h1>DAOStudentSubject.java</h1><pre class="source lang-java linenums">package dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.Query;
+import pojo.NewHibernateUtil;
+import pojo.Studentsubject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L12">public class DAOStudentSubject {</span>
+
+    public void addStudentsubject(Studentsubject studentsubject) {
+<span class="fc" id="L15">        Transaction trans = null;</span>
+<span class="fc" id="L16">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L18">            trans = session.beginTransaction();</span>
+<span class="fc" id="L19">            session.save(studentsubject);</span>
+<span class="nc" id="L20">            trans.commit();</span>
+<span class="fc" id="L21">        } catch (Exception e) {</span>
+<span class="fc" id="L22">            e.printStackTrace();</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">            if (trans != null) {</span>
+<span class="fc" id="L24">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L27">            session.close();</span>
+<span class="pc" id="L28">        }</span>
+<span class="fc" id="L29">    }</span>
+
+    public void deleteStudentsubject(int id) {
+<span class="fc" id="L32">        Transaction trans = null;</span>
+<span class="fc" id="L33">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L35">            trans = session.beginTransaction();</span>
+<span class="fc" id="L36">            Studentsubject studentsubject = (Studentsubject) session.get(Studentsubject.class, id);</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">            if (studentsubject != null) {</span>
+<span class="nc" id="L38">                session.delete(studentsubject);</span>
+<span class="nc" id="L39">                trans.commit();</span>
+            }
+<span class="nc" id="L41">        } catch (Exception e) {</span>
+<span class="nc" id="L42">            e.printStackTrace();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (trans != null) {</span>
+<span class="nc" id="L44">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L47">            session.close();</span>
+<span class="pc" id="L48">        }</span>
+<span class="fc" id="L49">    }</span>
+
+    public Studentsubject getStudentsubjectById(int id) {
+<span class="fc" id="L52">        Studentsubject studentsubject = null;</span>
+<span class="fc" id="L53">        Transaction trans = null;</span>
+<span class="fc" id="L54">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L56">            trans = session.beginTransaction();</span>
+<span class="fc" id="L57">            studentsubject = (Studentsubject) session.get(Studentsubject.class, id);</span>
+<span class="fc" id="L58">            trans.commit();</span>
+<span class="nc" id="L59">        } catch (Exception e) {</span>
+<span class="nc" id="L60">            e.printStackTrace();</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (trans != null) {</span>
+<span class="nc" id="L62">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L65">            session.close();</span>
+<span class="pc" id="L66">        }</span>
+<span class="fc" id="L67">        return studentsubject;</span>
+    }
+
+    public List&lt;Studentsubject&gt; retrieveStudentsubjects() {
+<span class="fc" id="L71">        List&lt;Studentsubject&gt; studentsubjects = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L72">        Transaction trans = null;</span>
+<span class="fc" id="L73">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L75">            trans = session.beginTransaction();</span>
+<span class="fc" id="L76">            Query query = session.createQuery(&quot;from Studentsubject&quot;);</span>
+<span class="fc" id="L77">            studentsubjects = query.list();</span>
+<span class="fc" id="L78">            trans.commit();</span>
+<span class="nc" id="L79">        } catch (Exception e) {</span>
+<span class="nc" id="L80">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L82">            session.close();</span>
+<span class="pc" id="L83">        }</span>
+<span class="fc" id="L84">        return studentsubjects;</span>
+    }
+
+    public void updateStudentsubject(Studentsubject studentsubject) {
+<span class="fc" id="L88">        Transaction trans = null;</span>
+<span class="fc" id="L89">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L91">            trans = session.beginTransaction();</span>
+<span class="fc" id="L92">            session.update(studentsubject);</span>
+<span class="fc" id="L93">            trans.commit();</span>
+<span class="nc" id="L94">        } catch (Exception e) {</span>
+<span class="nc" id="L95">            e.printStackTrace();</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            if (trans != null) {</span>
+<span class="nc" id="L97">                trans.rollback();</span>
+            }
+        } finally {
+<span class="pc" id="L100">            session.close();</span>
+<span class="pc" id="L101">        }</span>
+<span class="fc" id="L102">    }</span>
+    
+    public List&lt;Studentsubject&gt; getStudentSubjectsByStudentId(int studentId) {
+<span class="fc" id="L105">    List&lt;Studentsubject&gt; studentSubjects = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L106">    Transaction trans = null;</span>
+<span class="fc" id="L107">    Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+
+    try {
+<span class="fc" id="L110">        trans = session.beginTransaction();</span>
+
+        // Query to retrieve student subjects associated with a specific student by studentId
+<span class="fc" id="L113">        Query query = session.createQuery(&quot;FROM Studentsubject ss WHERE ss.student.idStudent = :studentId&quot;);</span>
+<span class="fc" id="L114">        query.setParameter(&quot;studentId&quot;, studentId);</span>
+<span class="fc" id="L115">        studentSubjects = query.list();</span>
+
+<span class="fc" id="L117">        trans.commit();</span>
+<span class="nc" id="L118">    } catch (Exception e) {</span>
+<span class="nc" id="L119">        e.printStackTrace();</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        if (trans != null) {</span>
+<span class="nc" id="L121">            trans.rollback();</span>
+        }
+    } finally {
+<span class="pc" id="L124">        session.close();</span>
+<span class="pc" id="L125">    }</span>
+
+<span class="fc" id="L127">    return studentSubjects;</span>
+}
+
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

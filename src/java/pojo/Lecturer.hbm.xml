@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 9, 2023 12:15:13 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Lecturer" table="lecturer" catalog="academicsystem" optimistic-lock="version">
+        <id name="idLecturer" type="java.lang.Integer">
+            <column name="id_lecturer" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" />
+        </property>
+        <set name="lecturersubjects" table="lecturersubject" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lecturer" />
+            </key>
+            <one-to-many class="pojo.Lecturersubject" />
+        </set>
+    </class>
+</hibernate-mapping>

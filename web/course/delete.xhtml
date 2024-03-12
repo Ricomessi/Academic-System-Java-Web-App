@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://www.w3.org/1999/xhtml">
+<h:head>
+    <title>Delete Course</title>
+    <!-- Tambahkan referensi ke Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cyber University</a>
+            </div>
+        </nav>
+        <header class="py-5 bg-image-full" style="background-image: linear-gradient(to top, #2e4374, #60444461),url(img/Cover.jpg)">
+            <div class="text-center my-5">
+                <h1 class="text-white fs-3 fw-bolder">Chase your dream with us</h1>
+                <p class="text-white-50 mb-0">Beyond your limit</p>
+            </div>
+        </header>
+    <div class="container d-flex flex-column vh-100 justify-content-center">
+        <h:form id="delete">
+            <h2>Delete Course</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    
+                    <div class="form-group">
+                        <label for="courseIdToDelete">Course ID to Delete:</label>
+                        <h:inputText id="courseIdToDelete" class="form-control" value="#{course.idClass}" />
+                    </div>
+                    
+                     <br></br>
+                    <div class="form-group">
+                        <h:commandButton class="btn btn-danger" value="Delete Course" action="#{course.deleteCourse}" />
+                    </div>
+                </div>
+            </div>
+             <h:commandButton value="Kembali" class="btn btn-secondary mt-2" action="#{admin.navigateToAllLogin}" />
+        </h:form>
+    </div>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright Cyber University 2023</p></div>
+        </footer>
+</h:body>
+</html>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DAOCourse.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AAA111&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">DAOCourse.java</span></div><h1>DAOCourse.java</h1><pre class="source lang-java linenums">package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import pojo.NewHibernateUtil;
+import pojo.Course;
+
+<span class="fc" id="L11">public class DAOCourse {</span>
+
+    public void addCourse(Course course) {
+<span class="fc" id="L14">        Transaction trans = null;</span>
+<span class="fc" id="L15">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L17">            trans = session.beginTransaction();</span>
+<span class="fc" id="L18">            session.save(course);</span>
+<span class="fc" id="L19">            trans.commit();</span>
+<span class="nc" id="L20">        } catch (Exception e) {</span>
+<span class="nc" id="L21">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L23">            session.close();</span>
+<span class="pc" id="L24">        }</span>
+<span class="fc" id="L25">    }</span>
+
+    public void deleteCourse(Integer idClass) {
+<span class="fc" id="L28">        Transaction trans = null;</span>
+<span class="fc" id="L29">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L31">            trans = session.beginTransaction();</span>
+<span class="fc" id="L32">            Course course = (Course) session.load(Course.class, idClass);</span>
+<span class="nc" id="L33">            session.delete(course);</span>
+<span class="nc" id="L34">            trans.commit();</span>
+<span class="fc" id="L35">        } catch (Exception e) {</span>
+<span class="fc" id="L36">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L38">            session.close();</span>
+<span class="pc" id="L39">        }</span>
+<span class="fc" id="L40">    }</span>
+
+    public List&lt;Course&gt; getCourseById(Integer idClass) {
+<span class="fc" id="L43">        Transaction trans = null;</span>
+<span class="fc" id="L44">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+<span class="fc" id="L45">        List&lt;Course&gt; courses = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L47">            trans = session.beginTransaction();</span>
+<span class="fc" id="L48">            Query query = session.createQuery(&quot;from Course where idClass = :idClass&quot;);</span>
+<span class="fc" id="L49">            query.setInteger(&quot;idClass&quot;, idClass);</span>
+<span class="fc" id="L50">            courses = query.list();</span>
+<span class="fc" id="L51">            trans.commit();</span>
+<span class="nc" id="L52">        } catch (Exception e) {</span>
+<span class="nc" id="L53">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L55">            session.close();</span>
+<span class="pc" id="L56">        }</span>
+<span class="fc" id="L57">        return courses;</span>
+    }
+
+    public List&lt;Course&gt; retrieveAllCourses() {
+<span class="fc" id="L61">        List&lt;Course&gt; courses = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L62">        Transaction trans = null;</span>
+<span class="fc" id="L63">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L65">            trans = session.beginTransaction();</span>
+<span class="fc" id="L66">            Query query = session.createQuery(&quot;from Course&quot;);</span>
+<span class="fc" id="L67">            courses = query.list();</span>
+<span class="fc" id="L68">            trans.commit();</span>
+<span class="nc" id="L69">        } catch (Exception e) {</span>
+<span class="nc" id="L70">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L72">            session.close();</span>
+<span class="pc" id="L73">        }</span>
+<span class="fc" id="L74">        return courses;</span>
+    }
+
+    public void updateCourse(Course course) {
+<span class="fc" id="L78">        Transaction trans = null;</span>
+<span class="fc" id="L79">        Session session = NewHibernateUtil.getSessionFactory().openSession();</span>
+        try {
+<span class="fc" id="L81">            trans = session.beginTransaction();</span>
+<span class="fc" id="L82">            session.update(course);</span>
+<span class="fc" id="L83">            trans.commit();</span>
+<span class="nc" id="L84">        } catch (Exception e) {</span>
+<span class="nc" id="L85">            e.printStackTrace();</span>
+        } finally {
+<span class="pc" id="L87">            session.close();</span>
+<span class="pc" id="L88">        }</span>
+<span class="fc" id="L89">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

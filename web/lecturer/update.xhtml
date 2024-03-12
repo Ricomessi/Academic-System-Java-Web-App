@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Update Lecturer</title>
+        <!-- Tambahkan Bootstrap CSS Library -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cyber University</a>
+            </div>
+        </nav>
+        <div class="container  d-flex flex-column vh-100 justify-content-center">
+            <h:form id="updateLecturerForm">
+                <h2>Update Lecturer</h2>
+                <div class="form-group">
+                    <label for="lecturerId">Lecturer ID:</label>
+                    <h:inputText id="lecturerId" value="#{lecturer.idLecturer}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <h:commandButton value="Show Lecturer" action="#{lecturer.getById}" class="btn btn-primary"/>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <h:inputText id="name" value="#{lecturer.name}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <h:inputText id="email" value="#{lecturer.email}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <h:inputText id="password" value="#{lecturer.password}" class="form-control"/>
+                </div>
+                <h:commandButton value="Update" action="#{lecturer.update}" class="btn btn-primary"/>\
+                 <h:form> <h:commandButton value="Kembali" class="btn btn-secondary" action="#{admin.navigateToAllLogin}" /></h:form>
+            </h:form>
+           
+        </div>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright Cyber university 2023</p></div>
+        </footer>
+    </h:body>
+</html>
